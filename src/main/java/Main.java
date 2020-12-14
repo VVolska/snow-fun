@@ -14,7 +14,7 @@ public class Main {
 		/// true, true);
 		// Sprzet.addSprzet(s1);
 
-		String fileName = "testbaza5";
+		String fileName = "testbaza";
 //		Database bazka = new Database(fileName);
 //
 //		bazka.createNewDatabase();
