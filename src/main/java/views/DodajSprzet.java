@@ -142,11 +142,9 @@ public class DodajSprzet extends JFrame {
 	}
 
 	void addSprzet() {
-		System.out.println("Klikniety");
 		Typ typEnum = null;
 		String typ = textTyp.getText().toLowerCase();
 		if (typ.equals("narty")) {
-			System.out.println("NARTY!!!!");
 			typEnum = Typ.Narty;
 		} else if (typ.equals("kijki")) {
 			typEnum = Typ.Kijki;
@@ -157,11 +155,9 @@ public class DodajSprzet extends JFrame {
 		boolean sprawny = false;
 		boolean dostepny = false;
 		if (radioButtonSprawny.isSelected()) {
-			System.out.println("JEST SPRAWNY");
 			sprawny = true;
 		}
 		if (radioButtonDostepny.isSelected()) {
-			System.out.println("JEST DOSTEPNY");
 			dostepny = true;
 		}
 

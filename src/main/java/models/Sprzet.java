@@ -77,14 +77,6 @@ public class Sprzet implements Serializable{
 		}
 	}
 
-	static void wyswietlInformacjeODostepnymSprzecie() {
-		for (Sprzet s : sprzety) {
-			if (s.dostepny) {
-				System.out.println(s.getNazwa() + " " + s.getTyp() + " " + s.getCena());
-			}
-		}
-	}
-
 	public int getId() {
 		return id;
 	}

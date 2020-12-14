@@ -93,16 +93,8 @@ public class Database {
     public void fetchData() throws SQLException {
         Sprzet sprzet = sprzetDao.queryForId(5);
         List<Sprzet> sprzety = sprzetDao.queryForAll();
-        for (Sprzet s : sprzety) {
-            System.out.println(s.getSklep().getNazwa() + s.getNazwa());
-        }
-        System.out.println("ORDERS " + sprzety.size());
-
         Sklep sklep = sklepDao.queryForId(1);
         ForeignCollection<Sprzet> sprzetyWSklepie = sklep.getSprzety();
-        for (Sprzet s : sprzetyWSklepie) {
-            System.out.println(s.getNazwa());
-        }
     }
 
     public void createData() throws SQLException {
@@ -202,10 +194,6 @@ public class Database {
     public ArrayList<Sklep> getData() throws SQLException {
         QueryBuilder<Sklep, Integer> queryBuilder = sklepDao.queryBuilder();
         System.out.println(queryBuilder.selectColumns());
-        for (Sklep a : queryBuilder.query()) {
-            System.out.println("Lista");
-            System.out.println(a.getNazwa());
-        }
         return (ArrayList<Sklep>) queryBuilder.query();
     }
 

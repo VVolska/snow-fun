@@ -90,13 +90,7 @@ public class Sklepy extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				String command = actionEvent.getActionCommand();
-
-				System.out.println("Selected: " + command + selectedRow);
 				Sklep sklep = sklepy.get(selectedRow);
-				System.out.println(sklepy.get(selectedRow).getNazwa());
-				for (Sprzet s : sklep.getSprzety()) {
-					System.out.println(s.getNazwa());
-				}
 				new Sprzety(sklep);
 
 			}
@@ -110,10 +104,8 @@ public class Sklepy extends JFrame {
 
 				lsm = (ListSelectionModel) e.getSource();
 				if (lsm.isSelectionEmpty()) {
-					System.out.println("No rows are selected.");
 				} else {
 					selectedRow = lsm.getMinSelectionIndex();
-					System.out.println("Row " + selectedRow + " is now selected.");
 				}
 			}
 		});

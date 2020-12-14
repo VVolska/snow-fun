@@ -38,138 +38,124 @@ import java.awt.FlowLayout;
 
 public class Sprzety extends JFrame {
 
-	JTable table = new JTable();
-	DefaultTableModel model = new DefaultTableModel();
-	JScrollPane scroll;
-	String headers[] = { "Nazwa", "Typ", "Cena" };
-	ListSelectionModel rowSM = table.getSelectionModel();
-	int selectedRow;
-	ListSelectionModel lsm;
-	ArrayList<Sklep> sklepy;
-	ForeignCollection<Sprzet> sprzety;
-	Sklep sklep;
-	private JPanel panel;
-	private JButton buttonWybierz;
-	private JButton buttonDodaj;
-	Sprzety widok;
+    JTable table = new JTable();
+    DefaultTableModel model = new DefaultTableModel();
+    JScrollPane scroll;
+    String headers[] = {"Nazwa", "Typ", "Cena"};
+    ListSelectionModel rowSM = table.getSelectionModel();
+    int selectedRow;
+    ListSelectionModel lsm;
+    ArrayList<Sklep> sklepy;
+    ForeignCollection<Sprzet> sprzety;
+    Sklep sklep;
+    private JPanel panel;
+    private JButton buttonWybierz;
+    private JButton buttonDodaj;
+    Sprzety widok;
 
-	public Sprzety(Sklep sklep) {
-		widok = this;
-		this.sklep = sklep;
-		initialize();
-		listen();
-		try {
-			addListaSprzetow(sklep);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public Sprzety(Sklep sklep) {
+        widok = this;
+        this.sklep = sklep;
+        initialize();
+        listen();
+        try {
+            addListaSprzetow(sklep);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	public void initialize() {
+    public void initialize() {
 
-		setBackground(Color.DARK_GRAY);
+        setBackground(Color.DARK_GRAY);
 
-		model.setColumnIdentifiers(headers);
-		table.setModel(model);
-		scroll = new JScrollPane(table);
-		table.setBackground(Color.LIGHT_GRAY);
-		scroll.setBackground(Color.DARK_GRAY);
-		scroll.setForeground(Color.GREEN);
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        model.setColumnIdentifiers(headers);
+        table.setModel(model);
+        scroll = new JScrollPane(table);
+        table.setBackground(Color.LIGHT_GRAY);
+        scroll.setBackground(Color.DARK_GRAY);
+        scroll.setForeground(Color.GREEN);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		JPanel contentPaneSklepy = new JPanel();
-		contentPaneSklepy.setBackground(Color.DARK_GRAY);
-		contentPaneSklepy.setForeground(Color.cyan);
-		contentPaneSklepy.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPaneSklepy.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPaneSklepy);
+        JPanel contentPaneSklepy = new JPanel();
+        contentPaneSklepy.setBackground(Color.DARK_GRAY);
+        contentPaneSklepy.setForeground(Color.cyan);
+        contentPaneSklepy.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPaneSklepy.setLayout(new BorderLayout(0, 0));
+        setContentPane(contentPaneSklepy);
 
-		setTitle("Asortyment sklepu " + sklep.getNazwa());
+        setTitle("Asortyment sklepu " + sklep.getNazwa());
 
-		panel = new JPanel();
-		panel.setBackground(Color.DARK_GRAY);
-		contentPaneSklepy.add(panel, BorderLayout.SOUTH);
-		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        panel = new JPanel();
+        panel.setBackground(Color.DARK_GRAY);
+        contentPaneSklepy.add(panel, BorderLayout.SOUTH);
+        panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-		buttonWybierz = new JButton("Wybierz");
-		buttonWybierz.setActionCommand("OK");
-		panel.add(buttonWybierz);
+        buttonWybierz = new JButton("Wybierz");
+        buttonWybierz.setActionCommand("OK");
+        panel.add(buttonWybierz);
 
-		buttonDodaj = new JButton("Dodaj Nowy");
-		panel.add(buttonDodaj);
-		getContentPane().add(scroll, BorderLayout.CENTER);
-		setBounds(100, 100, 450, 300);
-		setLocationRelativeTo(null);
-		setVisible(true);
+        buttonDodaj = new JButton("Dodaj Nowy");
+        panel.add(buttonDodaj);
+        getContentPane().add(scroll, BorderLayout.CENTER);
+        setBounds(100, 100, 450, 300);
+        setLocationRelativeTo(null);
+        setVisible(true);
 
-	}
+    }
 
-	public void listen() {
-		ActionListener showDetails = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
+    public void listen() {
+        ActionListener showDetails = new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
 
-				String command = actionEvent.getActionCommand();
+                String command = actionEvent.getActionCommand();
+                Object[] arr = sklep.getSprzety().toArray();
+                Sprzet sprzet = (Sprzet) arr[selectedRow];
+                new Szczegoly(sprzet);
+                refresh();
 
-				System.out.println("Selected: " + command + selectedRow);
-				Object[] arr = sklep.getSprzety().toArray();
-				System.out.println(arr[0]);
-				Sprzet sprzet = (Sprzet) arr[selectedRow];
-				System.out.println("Sprzet " + sprzet.getNazwa());
-				new Szczegoly(sprzet);
-				refresh();
+            }
+        };
 
-			}
-		};
+        buttonWybierz.addActionListener(showDetails);
 
-		buttonWybierz.addActionListener(showDetails);
+        ActionListener showWarehouse = new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                String command = actionEvent.getActionCommand();
+                new Magazyn(sklep);
+            }
+        };
 
-		ActionListener showWarehouse = new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
+        buttonDodaj.addActionListener(showWarehouse);
 
-				String command = actionEvent.getActionCommand();
-				new Magazyn(sklep);
-				System.out.println("pokazano sklep");
+        rowSM.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                // Ignore extra messages.
+                if (e.getValueIsAdjusting())
+                    return;
 
-			}
-		};
+                lsm = (ListSelectionModel) e.getSource();
+                if (!lsm.isSelectionEmpty()) {
+                    selectedRow = lsm.getMinSelectionIndex();
+                }
+            }
+        });
 
-		buttonDodaj.addActionListener(showWarehouse);
+    }
 
-		rowSM.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-				// Ignore extra messages.
-				if (e.getValueIsAdjusting())
-					return;
+    void refresh() {
+        SwingUtilities.updateComponentTreeUI(this);
+        invalidate();
+        validate();
+        repaint();
+    }
 
-				lsm = (ListSelectionModel) e.getSource();
-				if (lsm.isSelectionEmpty()) {
-					System.out.println("No rows are selected.");
-				} else {
-					selectedRow = lsm.getMinSelectionIndex();
-					System.out.println("Row " + selectedRow + " is now selected.");
-				}
-			}
-		});
+    void addListaSprzetow(Sklep sklep) throws SQLException {
 
-	}
-
-	void refresh() {
-		SwingUtilities.updateComponentTreeUI(this);
-		invalidate();
-		validate();
-		repaint();
-	}
-
-	void addListaSprzetow(Sklep sklep) throws SQLException {
-
-		sprzety = sklep.getSprzety();
-		for (Sprzet s : sprzety) {
-			model.addRow(new Object[] { s.getNazwa(), s.getTyp(), s.getCena() });
-		}
-
-		for (Sprzet s : sklep.getSprzety()) {
-			System.out.println("Sprzet w sklepie: " + s.getNazwa());
-		}
-	}
+        sprzety = sklep.getSprzety();
+        for (Sprzet s : sprzety) {
+            model.addRow(new Object[]{s.getNazwa(), s.getTyp(), s.getCena()});
+        }
+    }
 }

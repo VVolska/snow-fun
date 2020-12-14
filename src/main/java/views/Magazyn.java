@@ -112,14 +112,10 @@ public class Magazyn extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				String command = actionEvent.getActionCommand();
-
-				System.out.println("Selected: " + command + selectedRow);
-
 				Sprzet sprzetWybrany = sprzetyNiczyje.get(selectedRow);
 				new DodanoSprzetDoSklepu(sprzetWybrany, sklep);
 				addSprzetToDatabase(sprzetWybrany);
 				model.removeRow(selectedRow);
-				
 			}
 
 		};
@@ -144,11 +140,8 @@ public class Magazyn extends JFrame {
 					return;
 
 				lsm = (ListSelectionModel) e.getSource();
-				if (lsm.isSelectionEmpty()) {
-					System.out.println("No rows are selected.");
-				} else {
+				if (!lsm.isSelectionEmpty()) {
 					selectedRow = lsm.getMinSelectionIndex();
-					System.out.println("Row " + selectedRow + " is now selected.");
 				}
 			}
 		});
@@ -188,7 +181,6 @@ public class Magazyn extends JFrame {
 				model.addRow(new Object[] { s.getNazwa(), s.getTyp(), s.getCena() });
 				sprzetyNiczyje.add(s);
 			} else {
-				System.out.println("To jest null" + i);
 				i++;
 			}
 		}
