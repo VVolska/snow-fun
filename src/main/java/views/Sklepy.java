@@ -50,7 +50,6 @@ public class Sklepy extends JFrame {
 	public void initialize() {
 		setTitle("Lista sklepow");
 		setBounds(100, 100, 450, 300);
-		// setSize(400, 300);
 
 
 		setLocationRelativeTo(null);
@@ -106,7 +105,6 @@ public class Sklepy extends JFrame {
 
 		rowSM.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Ignore extra messages.
 				if (e.getValueIsAdjusting())
 					return;
 

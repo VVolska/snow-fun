@@ -173,8 +173,8 @@ public class DodajSprzet extends JFrame {
 					Integer.parseInt(textCenaWypozyczenia.getText()), sprawny, dostepny);
 			
 			sprzetDao.create(sprzet);
-			setVisible(false); //you can't see me!
-			dispose(); //Destroy the JFrame object
+			setVisible(false);
+			dispose();
 
 			new DodanoSprzetDoMagazynu(sprzet, null);
 		} catch (SQLException e) {

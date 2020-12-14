@@ -25,7 +25,7 @@ public class Szkolenie {
 	};
 
 	public Szkolenie() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Szkolenie(Wyjazd wyjazd, PoziomTrudnosci poziomTrudnosci) {

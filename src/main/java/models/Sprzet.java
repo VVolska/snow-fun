@@ -43,7 +43,6 @@ public class Sprzet implements Serializable{
 		this.cenaZaDzienWypozyczenia = cenaZaDzienWypozyczenia;
 		this.sprawny = sprawny;
 		this.dostepny = dostepny;
-		//sprzety.add(this);
 	}
 
 	public Sprzet(String nazwa, Typ typ, double cena, int cenaZaDzienWypozyczenia, boolean sprawny, boolean dostepny) {

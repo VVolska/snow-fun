@@ -101,9 +101,7 @@ public class Sprzety extends JFrame {
 		getContentPane().add(scroll, BorderLayout.CENTER);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
-		// setSize(400, 300);
 		setVisible(true);
-		// setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	}
 

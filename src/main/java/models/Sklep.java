@@ -25,7 +25,7 @@ public class Sklep {
 	private ArrayList<PracownikStacjonarny> pracownicy;
 
 	public Sklep() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Sklep(String nazwa, String adres) {

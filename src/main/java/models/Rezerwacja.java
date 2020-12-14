@@ -20,7 +20,7 @@ public class Rezerwacja {
 	private Date dataZakonczenia;
 
 	public Rezerwacja() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Rezerwacja(Klient klient, Wyjazd wyjazd) {

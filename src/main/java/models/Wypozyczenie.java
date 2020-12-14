@@ -21,6 +21,10 @@ public class Wypozyczenie {
 	private Klient klient;
 	private int idKlienta;
 
+	public Wypozyczenie() {
+		// ORMLite needs a no-arg constructor
+	}
+	
 	public Wypozyczenie(Calendar dataRozpoczecia, Calendar dataZakonczenia, Klient klient, Sprzet sprzet) {
 		this.dataRozpoczecia = dataRozpoczecia.getTime();
 		this.dataZakonczenia = dataZakonczenia.getTime();
@@ -60,8 +64,5 @@ public class Wypozyczenie {
 
 	public int getIdKlienta() {
 		return idKlienta;
-	}
-
-	public Wypozyczenie() {
 	}
 }

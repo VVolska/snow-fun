@@ -18,7 +18,7 @@ public class Instruktor extends Pracownik {
 	private int numerUbezpieczenia;
 
 	public Instruktor() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Instruktor(String imie, String nazwisko, int pesel, Calendar dataUrodzenia, int numerLicencji) {
