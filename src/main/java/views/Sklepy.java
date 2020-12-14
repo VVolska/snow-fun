@@ -50,7 +50,6 @@ public class Sklepy extends JFrame {
 	public void initialize() {
 		setTitle("Lista sklepow");
 		setBounds(100, 100, 450, 300);
-		// setSize(400, 300);
 
 
 		setLocationRelativeTo(null);
@@ -91,13 +90,7 @@ public class Sklepy extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				String command = actionEvent.getActionCommand();
-
-				System.out.println("Selected: " + command + selectedRow);
 				Sklep sklep = sklepy.get(selectedRow);
-				System.out.println(sklepy.get(selectedRow).getNazwa());
-				for (Sprzet s : sklep.getSprzety()) {
-					System.out.println(s.getNazwa());
-				}
 				new Sprzety(sklep);
 
 			}
@@ -106,16 +99,13 @@ public class Sklepy extends JFrame {
 
 		rowSM.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Ignore extra messages.
 				if (e.getValueIsAdjusting())
 					return;
 
 				lsm = (ListSelectionModel) e.getSource();
 				if (lsm.isSelectionEmpty()) {
-					System.out.println("No rows are selected.");
 				} else {
 					selectedRow = lsm.getMinSelectionIndex();
-					System.out.println("Row " + selectedRow + " is now selected.");
 				}
 			}
 		});

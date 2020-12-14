@@ -32,7 +32,7 @@ public class Wyjazd {
 	private ArrayList<Rezerwacja> rezerwacje;
 
 	public Wyjazd() {
-		
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Wyjazd(String nazwa, String miejscowosc, int minimalnyWiekUczestnika, int koszt, Calendar dataRozpoczecia,

@@ -11,7 +11,6 @@ static String fileName;
 		try {
 			sklepy.addListaSklepow(fileName);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

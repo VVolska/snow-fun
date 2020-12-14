@@ -43,7 +43,6 @@ public class Sprzet implements Serializable{
 		this.cenaZaDzienWypozyczenia = cenaZaDzienWypozyczenia;
 		this.sprawny = sprawny;
 		this.dostepny = dostepny;
-		//sprzety.add(this);
 	}
 
 	public Sprzet(String nazwa, Typ typ, double cena, int cenaZaDzienWypozyczenia, boolean sprawny, boolean dostepny) {
@@ -75,14 +74,6 @@ public class Sprzet implements Serializable{
 	void addSerwis(Serwis serwis) {
 		if (!serwisy.contains(serwis)) {
 			serwisy.add(serwis);
-		}
-	}
-
-	static void wyswietlInformacjeODostepnymSprzecie() {
-		for (Sprzet s : sprzety) {
-			if (s.dostepny) {
-				System.out.println(s.getNazwa() + " " + s.getTyp() + " " + s.getCena());
-			}
 		}
 	}
 

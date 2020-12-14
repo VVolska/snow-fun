@@ -64,7 +64,6 @@ public class Magazyn extends JFrame {
 		try {
 			addListaSprzetow();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		listen();
@@ -105,10 +104,7 @@ public class Magazyn extends JFrame {
 		getContentPane().add(scroll, BorderLayout.CENTER);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
-		// setSize(400, 300);
 		setVisible(true);
-		// setDefaultCloseOperation(EXIT_ON_CLOSE);
-
 	}
 
 	public void listen() {
@@ -116,15 +112,10 @@ public class Magazyn extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				String command = actionEvent.getActionCommand();
-
-				System.out.println("Selected: " + command + selectedRow);
-
-				// sprzety = sprzetDao.queryForAll();
 				Sprzet sprzetWybrany = sprzetyNiczyje.get(selectedRow);
 				new DodanoSprzetDoSklepu(sprzetWybrany, sklep);
 				addSprzetToDatabase(sprzetWybrany);
 				model.removeRow(selectedRow);
-				
 			}
 
 		};
@@ -135,8 +126,8 @@ public class Magazyn extends JFrame {
 			public void actionPerformed(ActionEvent actionEvent) {
 
 				new DodajSprzet();
-				setVisible(false); //you can't see me!
-				dispose(); //Destroy the JFrame object
+				setVisible(false);
+				dispose();
 
 			}
 		};
@@ -145,16 +136,12 @@ public class Magazyn extends JFrame {
 
 		rowSM.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Ignore extra messages.
 				if (e.getValueIsAdjusting())
 					return;
 
 				lsm = (ListSelectionModel) e.getSource();
-				if (lsm.isSelectionEmpty()) {
-					System.out.println("No rows are selected.");
-				} else {
+				if (!lsm.isSelectionEmpty()) {
 					selectedRow = lsm.getMinSelectionIndex();
-					System.out.println("Row " + selectedRow + " is now selected.");
 				}
 			}
 		});
@@ -168,7 +155,6 @@ public class Magazyn extends JFrame {
 			sklepDao.createOrUpdate(this.sklep);
 			sprzetDao.createOrUpdate(sprzet);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -188,9 +174,6 @@ public class Magazyn extends JFrame {
 		sklepDao = DaoManager.createDao(connectionSource, Sklep.class);
 
 		List<Sprzet> sprzety = sprzetDao.queryForAll();
-		// sklepy.add(new Sklep("Adrenalina", "Kamieniecka"));
-		// sklepy.add(new Sklep("Majesty", "Kamieniecka"));
-		// sklepy.add(new Sklep("Burtion", "Kamieniecka"));
 		this.sprzetyNiczyje = new ArrayList();
 		int i = 0;
 		for (Sprzet s : sprzety) {
@@ -198,7 +181,6 @@ public class Magazyn extends JFrame {
 				model.addRow(new Object[] { s.getNazwa(), s.getTyp(), s.getCena() });
 				sprzetyNiczyje.add(s);
 			} else {
-				System.out.println("To jest null" + i);
 				i++;
 			}
 		}

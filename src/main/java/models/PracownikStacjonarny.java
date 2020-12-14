@@ -14,7 +14,7 @@ public class PracownikStacjonarny extends Pracownik {
 	private Sklep sklep;
 
 	public PracownikStacjonarny() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public PracownikStacjonarny(String imie, String nazwisko, int pesel, Calendar dataUrodzenia,

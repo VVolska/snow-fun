@@ -16,7 +16,7 @@ public class InstruktorNaWyjezdzie {
 	@DatabaseField
 	private int pensja;
 	public InstruktorNaWyjezdzie() {
-		
+		// ORMLite needs a no-arg constructor
 	}
 	public InstruktorNaWyjezdzie(Wyjazd wyjazd, Instruktor instruktor) {
 		instruktor.addInstruktoraNaWyjezdzie(this);

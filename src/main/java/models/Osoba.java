@@ -61,7 +61,6 @@ abstract class Osoba {
 	}
 
 	private int wyliczWiek() {
-		//Date dataUrodzeniaTmp = dataUrodzenia.getTime();
 		String[] dataUrodzeniaString = dateFormat.format(dataUrodzenia).split("/");
 		int rokUrodzenia = Integer.parseInt(dataUrodzeniaString[0]);
 		String[] dataTerazString = dateFormat.format(new Date()).split("/");

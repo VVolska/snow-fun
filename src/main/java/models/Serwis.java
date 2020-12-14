@@ -16,7 +16,7 @@ public class Serwis {
 	private ArrayList<PracownikStacjonarny> pracownicy;
 
 	public Serwis() {
-
+		// ORMLite needs a no-arg constructor
 	}
 
 	public Serwis(Sprzet sprzet, PracownikStacjonarny pracownik) {
